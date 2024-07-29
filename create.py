@@ -121,6 +121,8 @@ def processMenu(node):
     global current_item
     global current_page
 
+    prev = current_item
+
     for attr in node:
         if (attr.tag == 'title'):
             current_item = writer.add_outline_item(attr.text, current_page, current_item, None)
@@ -133,7 +135,7 @@ def processMenu(node):
         if (attr.tag == 'menu'):
             processMenu(attr)
 
-    current_item = None
+    current_item = prev
 
 tree = ET.parse('contents/pdf.xml')
 root = tree.getroot()
